@@ -1,5 +1,3 @@
-import { element } from "prop-types";
-
 describe("PositiveTest1", () => {
   it("passes1", () => {
     cy.visit("/");
@@ -25,9 +23,9 @@ describe("PositiveTest1", () => {
       false
     );
     cy.get(".mt-3").then(($element) => {
-      return $element[1].click();
+      return $element[2].click();
     });
-    cy.contains("12 стульев").should("be.visible");
+    cy.contains("Понедельник начинается в субботу").should("be.visible");
     cy.contains("Dowload book").should("be.visible");
     cy.loginOut();
   });
@@ -61,16 +59,16 @@ describe("NegativeTest", () => {
 });
 
 describe("FavoriteBookPositive", () => {
-    it("AddFavoritePositive", () => {
-      cy.visit("/");
-      cy.loginIn("bropet@mail.ru", "123");
-      cy.addBook("Иван Ефремов", "Таис Афинская", "фантастика", true);
-      cy.get("button").then(($element) => {
-        return $element[2].click();
-      });
-      cy.contains("Favorites").click();
-      cy.contains("Война и Мир").should("be.visible");
-      cy.contains("Таис Афинская").should("be.visible");
-      cy.loginOut();
+  it("AddFavoritePositive", () => {
+    cy.visit("/");
+    cy.loginIn("bropet@mail.ru", "123");
+    cy.addBook("Иван Ефремов", "Таис Афинская", "фантастика", true);
+    cy.get("button").then(($element) => {
+      return $element[2].click();
     });
+    cy.contains("Favorites").click();
+    cy.contains("Война и Мир").should("be.visible");
+    cy.contains("Таис Афинская").should("be.visible");
+    cy.loginOut();
   });
+});
